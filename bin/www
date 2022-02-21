@@ -3,17 +3,22 @@
 /**
  * Module dependencies.
  */
+(async () => {
+  var app = require('../app');
+  var debug = require('debug')('encurtador-url-nodejs:server');
+  var http = require('http');
+  const database = require('../db');
+  const Link = require('../models/link');
 
-var app = require('../app');
-var debug = require('debug')('encurtador-url-nodejs:server');
-var http = require('http');
+  await database.sync();
 
-/**
- * Get port from environment and store in Express.
- */
+  /**
+  * Get port from environment and store in Express.
+  */
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
+console.log(port);
 
 /**
  * Create HTTP server.
@@ -88,3 +93,7 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+
+})();
+
