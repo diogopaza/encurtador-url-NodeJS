@@ -9,16 +9,16 @@ router.get('/', function(req, res, next) {
 
 router.post('/new', async (req, res, next) => {
   const url = req.body.url;
-  console.log("URL: " + url);
   const code = generateCode();
 
- const Resultado = await Link.create({
+ const resultado = await Link.create({
    url,
    code
  }) 
- // res.render('status', resultado.dataValues);
- res.send("gravado com sucesso");
+ res.render('stats', resultado.dataValues);
 })
+  
+
 
 function generateCode(){
   let text = '';
